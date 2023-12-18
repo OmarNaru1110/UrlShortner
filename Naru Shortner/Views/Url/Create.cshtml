@@ -1,0 +1,77 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Naru Shortnenr";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Naru Shortner</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .custom-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-form {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .custom-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .custom-btn:hover {
+                background-color: #0056b3;
+            }
+
+        /* Increase the text field size */
+        .form-control {
+            height: 50px;
+            font-size: 16px;
+            width: 720px; /* Set the width to 100% for a wider text field */
+        }
+
+        .help-block ul {
+            list-style-type: none;
+            color:red;
+        }
+    </style>
+</head>
+<body class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+
+    <div class="custom-container text-center">
+        <h1 style="color: #007bff;">Naru Shortner</h1>
+        <form class="custom-form" method="post">
+            <div class="form-group">
+                <label for="textInput" style="color: #007bff;">Enter URL:</label>
+                <input type="text" class="form-control" id="textInput" name="newurl"  required>
+            </div>
+            <div asp-validation-summary="All" class="help-block"></div>
+            <button asp-action="Index" type="submit" class="custom-btn">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
