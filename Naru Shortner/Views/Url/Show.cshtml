@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<form method="get">
+    <input type="text" class="form-control" id="myInput" name="newurl" value="@Model">
+    <br />
+    <button onclick="myFunction()" type="submit" class="custom-btn">Copy</button>
+    <button asp asp-controller="Url" asp-action="Create" type="submit" class="custom-btn2">Back</button>
+</form>
+<script>
+    function myFunction() {
+        // Get the text field
+        var copyText = document.getElementById("myInput");
+
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+    }
+</script>

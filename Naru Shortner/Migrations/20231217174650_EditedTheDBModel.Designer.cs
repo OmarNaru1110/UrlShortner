@@ -10,7 +10,7 @@ using Naru_Shortner.Context;
 
 namespace Naru_Shortner.Migrations
 {
-    [DbContext(typeof(URLContext))]
+    [DbContext(typeof(UrlContext))]
     [Migration("20231217174650_EditedTheDBModel")]
     partial class EditedTheDBModel
     {

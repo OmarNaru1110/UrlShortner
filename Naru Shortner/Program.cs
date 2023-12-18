@@ -1,3 +1,5 @@
+using Naru_Shortner.BLL;
+
 namespace Naru_Shortner
 {
     public class Program
@@ -8,6 +10,7 @@ namespace Naru_Shortner
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IUrlBLL, UrlBLL>();
 
             var app = builder.Build();
 

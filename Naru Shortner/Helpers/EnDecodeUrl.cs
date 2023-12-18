@@ -5,7 +5,7 @@ namespace Naru_Shortner.Helpers
     public static class EnDecodeUrl
     {
 
-        private const string Alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
+        private const string Alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
         private static readonly int Base = Alphabet.Length;
         public static string Encode(int id)
         {
