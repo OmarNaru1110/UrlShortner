@@ -10,6 +10,7 @@ namespace Naru_Shortner
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //so i can inject it in constructor
             builder.Services.AddScoped<IUrlBLL, UrlBLL>();
 
             var app = builder.Build();

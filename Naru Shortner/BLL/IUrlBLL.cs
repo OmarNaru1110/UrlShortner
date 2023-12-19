@@ -1,6 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Naru_Shortner.Models;
 
+/*
+    using repository pattern and dependency injection
+    so I can add mock data to test with no bother of methods naming 
+*/
+
 namespace Naru_Shortner.BLL
 {
     public interface IUrlBLL

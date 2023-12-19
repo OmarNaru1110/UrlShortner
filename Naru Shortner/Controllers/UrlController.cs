@@ -29,29 +29,24 @@ namespace Naru_Shortner.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(string newurl)
         {
-            Uri uriResult;
-            bool result = 
-                Uri.TryCreate(newurl, UriKind.Absolute, out uriResult) &&
-                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-            
-            if (result )
+            if (ShortUrlHelpers.CheckUrl(newurl))
             {
+                // add to database
                 if(await urlBll.Add(newurl))
                 {
+                    //impossible that stored urls is null cuz the check conditions 
+                    //I made at ShortUrlHelpers and at urlBll.Add
                     var storedUrl = urlBll.GetByUrl(newurl);
-                    if (storedUrl == null) {
-                        ModelState.AddModelError("", "Something wrong happened!\nPlease Try Again");
-                        return View();
-                    }
-                    var shortUrl = EnDecodeUrl.Encode(storedUrl.Id);
-                    //string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/";
+
+                    var shortUrl = ShortUrlHelpers.Encode(storedUrl.Id);
                     string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}/url/rdrto/";
                     baseUrl += shortUrl;
+
                     return RedirectToAction("Show",new { showUrl = baseUrl});
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Something wrong happened!\nPlease Try Again");
+                    ModelState.AddModelError("", "Something Went Wrong!\nPlease Try Again");
                     return View();
                 }
             }
@@ -68,7 +63,7 @@ namespace Naru_Shortner.Controllers
         }
         public IActionResult RdrTo(string id)
         {
-            int original = EnDecodeUrl.Decode(id);
+            int original = ShortUrlHelpers.Decode(id);
             var storedUrl = urlBll.GetById(original);
             if (storedUrl == null)
             {

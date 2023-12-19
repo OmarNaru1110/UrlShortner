@@ -2,12 +2,49 @@
     Layout = "_Layout";
 }
 
-<form method="get">
+    <style>
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: red;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        a.button:hover {
+            background-color: darkred;
+        }
+
+    a.button2 {
+        display: inline-block;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: blue;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        a.button2:hover {
+            background-color: darkblue;
+        }
+    </style>
+
     <input type="text" class="form-control" id="myInput" name="newurl" value="@Model">
     <br />
-    <button onclick="myFunction()" type="submit" class="custom-btn">Copy</button>
-    <button asp asp-controller="Url" asp-action="Create" type="submit" class="custom-btn2">Back</button>
-</form>
+    <a onclick="myFunction()" class="button2">Copy</a>
+
+    <a  href="/url/create" class="button">
+        Back
+    </a>
+
+
 <script>
     function myFunction() {
         // Get the text field
