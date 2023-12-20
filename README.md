@@ -18,3 +18,6 @@ The whole idea of this app is based on Bijection
 when the user requests the encoded url do the following:
 1. Get the original url from the database
 2. Redirect the user to it 
+
+## Useful Links
+- https://stackoverflow.com/questions/742013/how-do-i-create-a-url-shortener
