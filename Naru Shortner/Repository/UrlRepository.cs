@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Naru_Shortner.Context;
 using Naru_Shortner.Models;
+using Naru_Shortner.Repository.IRepository;
 
 namespace Naru_Shortner.BLL
 {
-    public class UrlBLL : IUrlBLL
+    public class UrlRepository : IUrlRepository
     {
         private readonly UrlContext context = new UrlContext();
         public async Task<bool> Add(string str)

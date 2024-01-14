@@ -1,4 +1,7 @@
 using Naru_Shortner.BLL;
+using Naru_Shortner.Helpers;
+using Naru_Shortner.Repository.IRepository;
+using Naru_Shortner.Services.IServices;
 
 namespace Naru_Shortner
 {
@@ -11,7 +14,8 @@ namespace Naru_Shortner
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             //so i can inject it in constructor
-            builder.Services.AddScoped<IUrlBLL, UrlBLL>();
+            builder.Services.AddScoped<IUrlRepository, UrlRepository>();
+            builder.Services.AddScoped<IUrlService, UrlService>();
 
             var app = builder.Build();
 

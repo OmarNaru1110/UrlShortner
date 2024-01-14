@@ -6,9 +6,9 @@ using Naru_Shortner.Models;
     so I can add mock data to test with no bother of methods naming 
 */
 
-namespace Naru_Shortner.BLL
+namespace Naru_Shortner.Repository.IRepository
 {
-    public interface IUrlBLL
+    public interface IUrlRepository
     {
         public Url GetById(int id);
         public Url GetByUrl(string url);

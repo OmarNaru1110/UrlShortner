@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using Naru_Shortner.Models;
+using Naru_Shortner.Repository.IRepository;
+using Naru_Shortner.Services.IServices;
+using System.Text;
 /*
     - The whole idea of this app is based on Bijection or what we call "Bijective Function"
     if I have f(x) = y, then there must be g(y) = x
@@ -17,13 +21,19 @@
 
 namespace Naru_Shortner.Helpers
 {
-    public static class ShortUrlHelpers
+    public class UrlService : IUrlService
     {
-
         private const string Alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
         private static readonly int Base = Alphabet.Length;
+        
+        private readonly IUrlRepository urlRepository;
+        public UrlService(IUrlRepository urlRepository)
+        {
+            this.urlRepository = urlRepository;
+        }
+
         //converting from base 10 to base 64
-        public static string Encode(int id)
+        public string Encode(int id)
         {
             //store the coefficient of base 64
             List<int> digits = new List<int>();
@@ -41,7 +51,7 @@ namespace Naru_Shortner.Helpers
             return sb.ToString();
         }
         //converting from base 64 to base 10
-        public static int Decode(string str)
+        public int Decode(string str)
         {
             var id = 0;
             for (var i = 0; i < str.Length; i++)
@@ -50,15 +60,26 @@ namespace Naru_Shortner.Helpers
             }
             return id;
         }
-        public static bool CheckUrl(string url)
+        public bool CheckUrl(string url)
         {
             Uri uriResult;
             //checking if url scheme is correct or not
             bool result =
                 Uri.TryCreate(url, UriKind.Absolute, out uriResult) &&
                 (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-            
             return result;
+        }
+        public Url GetUrlById(int id)
+        {
+            return urlRepository.GetById(id);
+        }
+        public Url GetUrlByUrl(string url)
+        {
+            return urlRepository.GetByUrl(url);
+        }
+        public Task<bool> AddUrl(string url)
+        {
+            return urlRepository.Add(url);
         }
     }
 }
