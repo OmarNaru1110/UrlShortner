@@ -43,6 +43,10 @@ namespace Naru_Shortner.Helpers
                 digits.Add(remainder);
                 id = id / Base;
             }
+            
+            if (digits.Count == 0)
+                return "a";
+
             StringBuilder sb = new StringBuilder();
             for (int i = digits.Count - 1; i >= 0; i--)
             {
