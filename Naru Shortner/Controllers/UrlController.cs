@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Naru_Shortner.Context;
 using Naru_Shortner.Helpers;
 using Naru_Shortner.Migrations;
 using Naru_Shortner.Models;

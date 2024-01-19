@@ -63,6 +63,7 @@ namespace Naru_Shortner.Helpers
         public bool CheckUrl(string url)
         {
             Uri uriResult;
+            
             //checking if url scheme is correct or not
             bool result =
                 Uri.TryCreate(url, UriKind.Absolute, out uriResult) &&

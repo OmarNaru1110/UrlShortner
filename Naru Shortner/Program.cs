@@ -1,5 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Naru_Shortner.BLL;
 using Naru_Shortner.Helpers;
+using Naru_Shortner.Repository.Context;
 using Naru_Shortner.Repository.IRepository;
 using Naru_Shortner.Services.IServices;
 
@@ -16,6 +19,13 @@ namespace Naru_Shortner
             //so i can inject it in constructor
             builder.Services.AddScoped<IUrlRepository, UrlRepository>();
             builder.Services.AddScoped<IUrlService, UrlService>();
+            builder.Services.AddDbContext<UrlContext>(options=> 
+            {
+                var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+                options.UseSqlServer(config.GetConnectionString("default"));
+            });
 
             var app = builder.Build();
 
