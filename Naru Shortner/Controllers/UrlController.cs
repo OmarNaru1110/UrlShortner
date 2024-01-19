@@ -37,7 +37,7 @@ namespace Naru_Shortner.Controllers
                 if(await urlService.AddUrl(newurl))
                 {
                     //impossible that stored urls is null cuz the check conditions 
-                    //I made at ShortUrlHelpers and at urlBll.Add
+                    //I made at UrlService
                     var storedUrl = urlService.GetUrlByUrl(newurl);
 
                     var shortUrl = urlService.Encode(storedUrl.Id);
@@ -65,6 +65,11 @@ namespace Naru_Shortner.Controllers
         }
         public IActionResult RdrTo(string id)
         {
+            if(id == null)
+            {
+                return NotFound(id);
+            }
+            //what if they gave a string that it's character doesn't exist
             int original = urlService.Decode(id);
             var storedUrl = urlService.GetUrlById(original);
             if (storedUrl == null)

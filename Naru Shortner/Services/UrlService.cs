@@ -80,10 +80,19 @@ namespace Naru_Shortner.Helpers
         }
         public Url GetUrlByUrl(string url)
         {
+            if (url == null)
+            {
+                return null;
+            }
             return urlRepository.GetByUrl(url);
         }
         public Task<bool> AddUrl(string url)
         {
+            if(url == null)
+            {
+                return Task.FromResult(false);
+            }
+
             return urlRepository.Add(url);
         }
     }

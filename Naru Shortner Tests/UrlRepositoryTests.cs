@@ -24,17 +24,6 @@ namespace Naru_Shortner_Tests
             urlRepository = new UrlRepository(context);
 
         }
-        [Test]
-        public async Task Add_NullString_ReturnFalse()
-        {
-            //Arrange
-
-            //Act
-            
-            var result = await urlRepository.Add(null);
-            //Assert
-            Assert.That(result,Is.False);
-        }
         [TestCase("adsfadf",ExpectedResult = true)]
         public async Task<bool> Add_String_ReturnTrue(string str)
         {

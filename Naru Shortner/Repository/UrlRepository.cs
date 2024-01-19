@@ -14,10 +14,6 @@ namespace Naru_Shortner.BLL
         }
         public async Task<bool> Add(string str)
         {
-            if(str == null)
-            {
-                return false;
-            }
             var url = new Url { LongUrl = str };
             await context.URLs.AddAsync(url);
             context.SaveChanges();
